@@ -1,13 +1,13 @@
 import { test as base, Page } from '@playwright/test';
-const configs = require('../configs/env.json');
+import configs from '../configs/env.json';
 
-// Custom test with beforeEach hook
-export const test = base.extend({
+type Fixtures = {
+  page: Page;
+};
+
+export const test = base.extend<Fixtures>({
   page: async ({ page }, use) => {
-    const loginPage = new LoginPage(page);
-    await loginPage.visit('/');
-    await loginPage.login(); 
+    await page.goto(configs.baseUrl, { waitUntil: 'networkidle' });
     await use(page);
   },
 });
-
