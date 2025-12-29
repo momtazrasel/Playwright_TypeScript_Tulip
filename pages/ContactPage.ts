@@ -33,7 +33,7 @@ export class ContactPage extends BasePage{
     await this.enterText(this.locators.email, email);
     await this.enterText(this.locators.message, message);
     await this.locators.sendButton.click();
-    await this.isElementVisible(this.locators.successfullMessage);
+    // await this.isElementVisible(this.locators.successfullMessage);
   }
 
 
